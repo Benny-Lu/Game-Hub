@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "News Page";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+            transition: all 0.25s;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="row">
+        <div class="column">
+            <a href="@Url.Action("LOLNews","Home")">
+                <img src="~/LOL.jpg" alt="Logo" width="258" height="160">
+            </a>
+            <p>3 Days left till Worlds!</p>
+        </div>
+        <div class="column">
+            <a href="@Url.Action("Valorant","Home")">
+                <img src="~/Valorant.jpg" alt="Logo" width="258" height="160" />
+            </a>
+            <p> Valorant Championship Tournament coming soon!</p>
+        </div>
+        <div class="column">
+            <a href="@Url.Action("CSGO","Home")">
+                <img src="~/csgo.jpg" alt="Logo" width="258" height="160">
+            </a>
+            <p>Introduction Operation Riptide</p>
+        </div>
+        <div class="column">
+            <a href="@Url.Action("MinecraftNews","Home")">
+                <img src="~/minecraft.jpg" alt="Logo" width="258" height="160" />
+            </a>
+            <p>Minecraft Cave update is out!</p>
+        </div>
+    </div>
+</body>

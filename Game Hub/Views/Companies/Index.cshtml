@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Game_Hub.Models.Company>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<h1>Comapanies</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Companies" asp-action="Index">
+    <p>
+        Company <input type="text" name="searchTerm">
+        @*<input type="submit" value="Search"/>*@
+        <button type="submit" class="btn btn-primary">Search</button>
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Founded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Founder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headquarters)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Founded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Founder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headquarters)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
