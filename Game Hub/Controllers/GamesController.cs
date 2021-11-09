@@ -26,10 +26,14 @@ namespace Game_Hub.Controllers
                         select s;
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                Games = Games.Where(s => s.Game_Name.Contains(searchTerm));
+                Games = Games.Where(s => s.Game_Name.Contains(searchTerm) && s.Company.Contains("Blizzard Entertainment") && s.Genre.Contains("") && s.Designer.Contains(""));// Games with the same Genre/Company will show up
+                
             }
-            return View(await Games.ToListAsync());
+            return View(await Games.ToListAsync()); //Display the information in table format 
         }
+
+
+    
 
         // GET: Games/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -26,7 +26,7 @@ namespace Game_Hub.Controllers
                          select s;
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                Author = Author.Where(s => s.First_Name.Contains(searchTerm));
+                Author = Author.Where(s => s.First_Name.Contains(searchTerm) && s.Last_Name.Contains("L"));
             }
             return View(await Author.ToListAsync());
         }

@@ -19,14 +19,14 @@ namespace Game_Hub.Controllers
             _context = context;
         }
 
-        // GET: Companies
+        // GET: Companies via LinQ Query
         public async Task<IActionResult> Index(string searchTerm)
         {
             var companies = from s in _context.Company
                             select s;
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                companies = companies.Where(s => s.Company_Name.Contains(searchTerm));
+                companies = companies.Where(s => s.Company_Name.Contains(searchTerm) && s.Headquarters.Contains("") && s.Founded.Contains(""));
             }
             return View(await companies.ToListAsync());
         }

@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Game_Hub.Models.Company>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
 
 @{
     ViewData["Title"] = "Companies";
@@ -6,9 +9,13 @@
 
 <h1>Comapanies</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
 
 <form asp-controller="Companies" asp-action="Index">
     <p>
@@ -38,26 +45,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Founded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Founder)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Headquarters)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+
+        @if (Model.Count() == 0)
+        {
+            <tr class="alert-danger">
+                <td colspan="8">No Records found</td>
+            </tr>
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Founded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Founder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Headquarters)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
